@@ -23,13 +23,13 @@ defmodule Rumbl.Accounts.User do
     |> changeset(params)
     |> cast(params, [:password])
     |> validate_required([:password])
-    |> validate_length(:username, min: 8, max: 128)
+    |> validate_length(:password, min: 8, max: 128)
     |> put_pass_hash()
   end
 
   defp put_pass_hash(changeset) do
     case changeset do
-      %Ecto.changeset{valid?: true, changes: %{password: pass}} ->
+      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
         put_change(changeset, :password_hash, Pbkdf2.hash_pwd_salt(pass))
 
       _ ->
