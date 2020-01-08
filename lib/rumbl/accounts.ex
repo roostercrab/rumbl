@@ -28,6 +28,17 @@ defmodule Rumbl.Accounts do
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
-    |> Repo.insert()
+    # TODO: need to set anything created here to no privilages
+    # |> Repo.insert()
+  end
+
+  def change_registration(%User{} = user, params) do
+    User.registration_changeset(attrs)
+  end
+
+  def register_user(attrs \\ %{}) do
+    %User{}
+    |> User.registration_changeset(attrs)
+    |> Repo.insert
   end
 end
