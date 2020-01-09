@@ -16,7 +16,7 @@
 </div>
 <div>
     <%= password_input f, :password, placeholder: "Password must be at least 8 characters long" %>
-    <%= error_tag f, :username %>
+    <%= error_tag f, :password %>
 </div>
     <%= submit "Create User" %>
 <% end %>
